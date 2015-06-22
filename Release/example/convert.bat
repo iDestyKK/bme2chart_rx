@@ -1,0 +1,1 @@
+..\bme2chart_rx.exe -n "plastic_mind_[N].bme" -h "plastic_mind_[H].bme" -a "plastic_mind_[A].bme" -o "plastic_mind.chart"
