@@ -1,16 +1,17 @@
-﻿Build started 2015/06/21 (日) 22:27:21.
+﻿Build started 2015/07/25 (土) 01:45:41.
      1>Project "H:\Cloud\OneDrive\IDE\Visual Studio 2010\Projects\bme2chart_rx\bme2chart_rx\bme2chart_rx.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Release\bme2chart_rx.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
-         main.cpp
-     1>main.cpp(95): warning C4018: '<' : signed/unsigned mismatch
-     1>main.cpp(121): warning C4018: '<' : signed/unsigned mismatch
-     1>main.cpp(129): warning C4244: '+=' : conversion from 'double' to 'int', possible loss of data
-     1>main.cpp(132): warning C4018: '<' : signed/unsigned mismatch
-     1>main.cpp(142): warning C4018: '<' : signed/unsigned mismatch
-     1>main.cpp(157): warning C4018: '<' : signed/unsigned mismatch
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt bme.cpp
+         bme.cpp
+     1>bme.cpp(151): warning C4244: 'return' : conversion from 'double' to 'int', possible loss of data
+     1>bme.cpp(155): warning C4018: '<' : signed/unsigned mismatch
+     1>bme.cpp(191): warning C4018: '<' : signed/unsigned mismatch
+     1>bme.cpp(210): warning C4018: '<' : signed/unsigned mismatch
+     1>bme.cpp(218): warning C4244: '+=' : conversion from 'double' to 'int', possible loss of data
+     1>bme.cpp(281): warning C4018: '<' : signed/unsigned mismatch
+     1>bme.cpp(290): warning C4018: '<' : signed/unsigned mismatch
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"H:\Cloud\OneDrive\IDE\Visual Studio 2010\Projects\bme2chart_rx\Release\bme2chart_rx.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\bme2chart_rx.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"H:\Cloud\OneDrive\IDE\Visual Studio 2010\Projects\bme2chart_rx\Release\bme2chart_rx.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"H:\Cloud\OneDrive\IDE\Visual Studio 2010\Projects\bme2chart_rx\Release\bme2chart_rx.lib" /MACHINE:X86 Release\bme.obj
          Release\main.obj
@@ -27,4 +28,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.46
+Time Elapsed 00:00:03.32

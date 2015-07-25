@@ -67,12 +67,21 @@ NOTE::NOTE() {
 	tick = 0;
 	colour = 0;
 	sound = 0;
+	sustain = 0;
 }
 
 NOTE::NOTE(int a, int b, int c) {
 	tick = a;
 	colour = b;
 	sound = c;
+	sustain = 0;
+}
+
+NOTE::NOTE(int a, int b, int c, int d) {
+	tick = a;
+	colour = b;
+	sound = c;
+	sustain = d;
 }
 
 bool NOTE::operator<(NOTE &rhs) {
@@ -123,6 +132,16 @@ int BME::getNote(int type) {
 		case 18: return 5;
 		case 19: return 6;
 		case 16: return 7;
+
+		case 51: return 0;
+		case 52: return 1;
+		case 53: return 2;
+		case 54: return 3;
+		case 55: return 4;
+		case 58: return 5;
+		case 59: return 6;
+		case 56: return 7;
+
 		case  1: return 8;
 		default: return -1;
 	}
@@ -146,6 +165,24 @@ void BME::addNotes(int measure, int 色, string events, int resolution) {
 		ev_str = events.substr(i * 2, 2);
 		if (ev_str != "00") {
 			notes.push_back(NOTE(calcTick(measure, i, event_num, resolution), 色, findSound(soundfont, ev_str)));
+		}
+	}
+}
+
+void BME::addSustains(int measure, int 色, string events, int resolution) {
+	int event_num = events.length() / 2;
+	string ev_str;
+	for (int i = 0; i < event_num; i++) {
+		ev_str = events.substr(i * 2, 2);
+		if (ev_str != "00") {
+			if (sus_held[色] == false) {
+				sus_held[色] = true;
+				sus_start[色] = calcTick(measure, i, event_num, resolution);
+			}
+			else {
+				sus_held[色] = false;
+				notes.push_back(NOTE(sus_start[色], 色, findSound(soundfont, ev_str), calcTick(measure, i, event_num, resolution) - sus_start[色]));
+			}
 		}
 	}
 }
@@ -183,6 +220,11 @@ void BME::process_measure位置(int resolution) {
 }
 
 void BME::process_chart(int resolution) {
+	for (int i = 0; i < 8; i++) {
+		sus_held [i] = false;
+		sus_start[i] = false;
+	}
+
 	//BMEのファイルを開けて読みます。
 	ifstream fp(path.c_str());
 	if (fp.fail()) {
@@ -217,6 +259,9 @@ void BME::process_chart(int resolution) {
 					//ノートです。
 					addNotes(measure, getNote(attribute), events, resolution);
 				}
+				if ((attribute >= 51 && attribute <= 56) || attribute == 58 || attribute == 59) {
+					addSustains(measure, getNote(attribute), events, resolution);
+				}
 			}
 		}
 	}
@@ -237,7 +282,7 @@ void BME::write_chart_to_file(ofstream &op) {
 		if (notes[i].colour == 8)
 			op << "\t" << notes[i].tick << " = A " << notes[i].sound << endl;
 		else
-			op << "\t" << notes[i].tick << " = N " << notes[i].colour << " 0 " << notes[i].sound << endl;
+			op << "\t" << notes[i].tick << " = N " << notes[i].colour << " " << notes[i].sustain << " " << notes[i].sound << endl;
 	}
 }
 

@@ -51,10 +51,12 @@ struct NOTE {
 	//構築子
 	NOTE();
 	NOTE(int, int, int);
+	NOTE(int, int, int, int);
 
 	int tick;
 	int colour;
 	int sound;
+	int sustain;
 
 	bool operator<(NOTE &);
 };
@@ -83,6 +85,7 @@ class BME {
 	private:
 		int getNote(int);
 		void addNotes(int, int, string, int);
+		void addSustains(int, int, string, int);
 		int calcTick(int, int, int, int);
 		int findSound(vector<AUDIO> &, string);
 		void sort_notes();
@@ -94,6 +97,8 @@ class BME {
 		vector<STRETCHER> stretchers;
 		vector<int> measure位置;
 		vector<double> measure_stretch;
+		bool sus_held [8];
+		int  sus_start[8];
 };
 
 #endif
